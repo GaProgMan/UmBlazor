@@ -1,0 +1,22 @@
+@using UmBlazor.Shared.Models
+
+@if (TimeLineItems != null && TimeLineItems.Length > 0)
+{
+    <section id="timeline">
+        <div class="flex-container">
+            @foreach(var item in TimeLineItems)
+            {
+                <TimeLineItem Item=@item></TimeLineItem>
+            }
+        </div>
+    </section>
+}
+else
+{
+    <p>Load some of the Timeline items from Umbraco Headless by clicking on the "Load Items" button, above</p>
+}
+
+@functions {
+    [Parameter]
+    private TimelineItem[] TimeLineItems { get; set; }
+}

@@ -1,0 +1,50 @@
+﻿@using UmBlazor.Shared.Models
+
+@page "/fetchdata"
+@inject HttpClient Http
+
+<section id="header">
+    <div class="flex-container">
+        <div class="header-content">
+            <h1>Blazor Timeline</h1>
+
+            <p>This component get's the Blazor timeline data...</p>
+            <p>From a real instance of Headless Umbraco</p>
+        </div>
+    </div>
+</section>
+
+<section id="load-controls">
+    <div class="flex-container">
+        <div class="loading-content">
+            @if (!loading)
+            {
+                <button onclick="@(() => LoadTimeLine())" type="button" class="btn btn-primary" >Load items</button>
+            }
+        </div>
+    </div>
+</section>
+
+<hr />
+
+@if (loading)
+{
+    <div id="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+}
+else
+{
+    <TimeLineItemBlock TimeLineItems=@timeline ></TimeLineItemBlock>
+}
+@functions {
+    bool loading = false;
+    TimelineItem[] timeline;
+
+    private async Task LoadTimeLine()
+    {
+        loading = true;
+        timeline = await Http.GetJsonAsync<TimelineItem[]>("api/SampleData/GetTimeline");
+        loading = false;
+    }
+}

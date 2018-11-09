@@ -1,0 +1,78 @@
+#timeline, #header {
+  max-width: 100%;
+}
+
+#header {
+    padding-bottom: 1em;
+}
+
+@keyframes spinner {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    100% {
+         transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    }
+}
+
+#loading-spinner {
+    position: fixed;
+    width: 100%;
+    height:100%;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.91);
+    top: 0;
+
+    margin-left: -32px;
+}
+
+ #loading-spinner .spinner {
+    display: flex;
+    margin: 0 auto;
+}
+
+ .spinner::before {
+    animation: 2s linear infinite spinner;
+    border: solid 3px #eee;
+    border-bottom-color: #EF6565;
+    border-radius: 50%;
+    content: "";
+    height: 40px;
+    left: 50%;
+    opacity: inherit;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    transform-origin: center;
+    width: 40px;
+    will-change: transform;
+}
+
+#timeline .flex-container, #header .flex-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+#load-controls .flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#load-controls .flex-container .loading-content {
+    max-width: 50%;
+}
+
+#timeline .flex-container .timeline-item, #header .flex-container .header-content {
+  text-align: center;
+  margin-right: 1em;
+  -ms-flex: 1 1 80px;
+  flex: 1 1 80px;
+  background-image: linear-gradient(220deg,#418ff7,#41e2f7);
+  border-radius: 10px;
+  color: #FFF;
+}
